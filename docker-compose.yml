@@ -1,0 +1,9 @@
+version: '2'
+services:
+
+    php-cli:
+        build: .
+        image: shrwdflrst_primes
+        # problems mounting this way in Win10 + Docker Toolbox - use cli to mount
+#        volumes:
+#            - ./:/var/www
