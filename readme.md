@@ -14,8 +14,9 @@ Running
     # Start container with bash using this image
     docker run -v "$PWD:/var/www"  -it shrwdflrst_primes /bin/bash
     
-    # command to run......
-    # command to run tests
+    bin/console app:primes
+    
+    ./vendor/bin/phpunit -c phpunit.xml
     
     
 Clean up

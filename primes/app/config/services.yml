@@ -4,6 +4,14 @@ parameters:
     #parameter_name: value
 
 services:
-    #service_name:
-    #    class: AppBundle\Directory\ClassName
-    #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
+
+    app.command.primes:
+        class: AppBundle\Command\PrimesCommand
+        arguments:
+            - "app:primes"
+            - "@app.prime_generator"
+        tags:
+            - { name: console.command }
+
+    app.prime_generator:
+        class: AppBundle\Math\Prime

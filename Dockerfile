@@ -12,4 +12,5 @@ RUN apt-get install -y git
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN cd ${APP_DIR}
+COPY error_logging.ini /usr/local/etc/php/conf.d/
+
