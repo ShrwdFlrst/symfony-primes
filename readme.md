@@ -14,10 +14,15 @@ Running
     # Start container with bash using this image
     docker run -v "$PWD:/var/www"  -it shrwdflrst_primes /bin/bash
     
-    bin/console app:primes
+    primes/bin/console app:primes
+    primes/bin/console app:primes --count=20
     
-    ./vendor/bin/phpunit -c phpunit.xml
+    ./primes/vendor/bin/phpunit -c phpunit.xml
     
+Example
+-------
+ 
+![Example](https://github.com/ShrwdFlrst/symfony-primes/raw/master/example.gif)
     
 Clean up
 --------

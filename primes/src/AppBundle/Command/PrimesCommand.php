@@ -50,6 +50,7 @@ class PrimesCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $timeStart = microtime(true);
         $count = (int) $input->getOption('count');
         $primes = $this->prime->getPrimes($count);
         $blank = ' ';
@@ -71,6 +72,11 @@ class PrimesCommand extends Command
             $primeMultiTable .= PHP_EOL;
         }
 
-        $output->write($primeMultiTable);
+        $output->writeln($primeMultiTable);
+
+        $timeEnd = microtime(true);
+        $elapsed = $timeEnd - $timeStart;
+
+        $output->writeln(sprintf('Elapsed time: %s microseconds%s', $elapsed, PHP_EOL));
     }
 }

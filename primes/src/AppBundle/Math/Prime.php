@@ -13,7 +13,7 @@ class Prime
      * @param int $max
      * @return \int[]
      */
-    public function getPrimes(int $count, int $max = 10000)
+    public function getPrimes(int $count, int $max = 1000000)
     {
         $primes = [];
 
