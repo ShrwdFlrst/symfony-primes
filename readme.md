@@ -8,7 +8,7 @@ Docker native or Docker Toolbox
 Running
 -------
 
-    # To create the container
+    # To create the container and run tests
     ./start.sh
     
     # To bash into the container
@@ -21,6 +21,11 @@ Inside the docker container:
     
     # Execute unit tests
     primes/vendor/bin/phpunit -c phpunit.xml
+    
+    # Execute Behat scenarios
+    primes/vendor/bin/behat
+    
+Behat [scenarios](./primes/features/primes_command.feature)    
     
 Example
 -------
