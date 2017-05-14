@@ -9,11 +9,11 @@ namespace AppBundle\Math;
 class Prime
 {
     /**
-     * @param int $count
-     * @param int $max
-     * @return \int[]
+     * @param int $count primes to return
+     * @param int $max limit to which we look for the primes
+     * @return int[]
      */
-    public function getPrimes(int $count, int $max = 1000000)
+    public function getPrimes(int $count, int $max = 1000000): array
     {
         $primes = [];
 
@@ -35,7 +35,7 @@ class Prime
      * @see https://en.wikipedia.org/wiki/Primality_test#Pseudocode
      * @return bool
      */
-    public function isPrime(int $number)
+    public function isPrime(int $number): bool
     {
         if ($number <= 1) {
             return false;

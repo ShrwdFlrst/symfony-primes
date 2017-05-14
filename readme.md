@@ -8,16 +8,19 @@ Docker native or Docker Toolbox
 Running
 -------
 
-    # Create custom image
-    docker-compose up --build
+    # To create the container
+    ./start.sh
     
-    # Start container with bash using this image
-    docker run -v "$PWD:/var/www"  -it shrwdflrst_primes /bin/bash
+    # To bash into the container
+    docker run -v "$PWD:/var/www" -it shrwdflrst_primes /bin/bash
+    
+Inside the docker container:    
     
     primes/bin/console app:primes
     primes/bin/console app:primes --count=20
     
-    ./primes/vendor/bin/phpunit -c phpunit.xml
+    # Execute unit tests
+    primes/vendor/bin/phpunit -c phpunit.xml
     
 Example
 -------

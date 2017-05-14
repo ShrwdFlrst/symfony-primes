@@ -8,9 +8,13 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Generate the multiplication tables for given number of prime numbers.
+ * Class PrimesCommand
+ * @package AppBundle\Command
+ */
 class PrimesCommand extends Command
 {
-    protected $defaultName;
     /**
      * @var Prime
      */
@@ -18,22 +22,20 @@ class PrimesCommand extends Command
 
     /**
      * PrimesCommand constructor.
-     * @param null|string $defaultName
+     * @param string $commandName
      * @param Prime $prime
      */
-    public function __construct($defaultName, Prime $prime)
+    public function __construct(string $commandName, Prime $prime)
     {
-        $this->defaultName = $defaultName;
 
-        parent::__construct();
+        parent::__construct($commandName);
         $this->prime = $prime;
     }
 
     protected function configure()
     {
         $this
-            ->setName($this->defaultName)
-            ->setDescription('Greet someone')
+            ->setDescription('Generate the multiplication tables for given number of prime numbers.')
             ->addOption(
                 'count',
                 null,
@@ -53,18 +55,22 @@ class PrimesCommand extends Command
         $timeStart = microtime(true);
         $count = (int) $input->getOption('count');
         $primes = $this->prime->getPrimes($count);
-        $blank = ' ';
         $separator = "\t";
-        array_unshift($primes, $blank);
-
         $primeMultiTable = '';
 
+        // Append 0 as we're making a table, and we need the first column/row
+        // to be the header and contain the primes themselves.
+        array_unshift($primes, 0);
+
+        // Create the table, row by row.
         foreach ($primes as $k => $rowItem) {
             foreach($primes as $i => $colItem) {
                 if ($k > 0 && $k === $i) {
+                    // The number is multiplied by itself, so highlight it.
                     $primeMultiTable .= '<comment>' . $rowItem * $colItem . $separator . '</comment>';
                 } elseif ($k === 0 || $i === 0) {
-                    $primeMultiTable .= '<info>'.trim($rowItem . $colItem) . $separator . '</info>';
+                    // We're in either the first row, or the nth row but first column, highlight it.
+                    $primeMultiTable .= '<info>' . ($rowItem + $colItem) . $separator . '</info>';
                 } else {
                     $primeMultiTable .= $rowItem * $colItem . $separator;
                 }
